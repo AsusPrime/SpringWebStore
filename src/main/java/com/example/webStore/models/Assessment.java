@@ -1,7 +1,5 @@
 package com.example.webStore.models;
 
-import com.example.webStore.exceptions.OutOfBoundsException;
-
 public class Assessment {
     private int rating;
 
@@ -11,7 +9,7 @@ public class Assessment {
 
     public void setRating(int rating) {
         if(rating > 5 || rating < 0)
-            throw new OutOfBoundsException();
+            throw new IllegalArgumentException("Rating is out of range");
         this.rating = rating;
     }
 }
