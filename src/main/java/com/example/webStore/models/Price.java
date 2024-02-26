@@ -1,7 +1,5 @@
 package com.example.webStore.models;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.math.BigDecimal;
 
 public class Price {
@@ -25,7 +23,7 @@ public class Price {
         this.price = BigDecimal.valueOf(price);
     }
 
-    private boolean isPriceLegal(@NotNull String price)
+    private boolean isPriceLegal(String price)
     {
         int decimalIndex = price.indexOf('.');
 

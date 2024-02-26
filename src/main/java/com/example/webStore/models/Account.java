@@ -1,8 +1,5 @@
 package com.example.webStore.models;
 
-
-import org.jetbrains.annotations.NotNull;
-
 public class Account {
     private String name;
     private PaymentInfo paymentInfo = null;
