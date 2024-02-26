@@ -28,4 +28,12 @@ public class PromotionTest {
             promotion.setPercent(150);
         });
     }
+
+    @Test
+    public void testPromotionCalcPriceWithPromotion()
+    {
+        Promotion promotion = new Promotion();
+        promotion.setPercent(33);
+        assertEquals(262.05, promotion.calcPriceWithPromotion(391.12));
+    }
 }

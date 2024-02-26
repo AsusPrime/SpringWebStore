@@ -26,6 +26,7 @@ public class Book {
 	public double getPrice() {
 		return price.getPrice();
 	}
+    public double getFinalPrice() { return promotion.calcPriceWithPromotion(price.getPrice()); }
 	public void setPrice(double price) {
 		this.price.setPrice(price);
 	}
@@ -72,7 +73,7 @@ public class Book {
 	public void removeCount(int count)
 	{
 		if(count < 0) { throw new IllegalArgumentException("Count must be positive number"); }
-		if(this.count < count) { throw new IllegalArgumentException("Canэt remove more than have"); }
+		if(this.count < count) { throw new IllegalArgumentException("Can't remove more than have"); }
 		this.count -= count;
 	}
 	public void setPromotion(int percent)

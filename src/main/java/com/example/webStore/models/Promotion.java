@@ -3,7 +3,7 @@ package com.example.webStore.models;
 import java.math.BigDecimal;
 
 public class Promotion {
-    private int percent;
+    private int percent = 0;
 
     public int getPercent() {
         return percent;
@@ -14,9 +14,10 @@ public class Promotion {
         this.percent = percent;
     }
 
-    public double calcPriceWithPromotion(double price)//TODO
+    public double calcPriceWithPromotion(double price)
     {
-        return 0;
+        double new_price = price - price * ((double) percent / 100);
+        return Math.round(new_price * 100.0) / 100.0;
     }
 
     private boolean isPromotionLegal(int promotion)
