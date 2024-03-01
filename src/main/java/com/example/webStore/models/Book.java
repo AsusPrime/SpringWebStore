@@ -1,16 +1,16 @@
 package com.example.webStore.models;
 
-import java.util.List;
+import org.springframework.data.annotation.Id;
 
 public class Book {
+	@Id
+	private long id;
 	private String name;
 	private String author;
 	private Price price;
-	private Assessment assessment;
-	private List<Image> images;
-	private List<Review> comments;
 	private int count = 0;
 	private Promotion promotion;
+
 	public String getName() {
 		return name;
 	}
@@ -29,28 +29,6 @@ public class Book {
     public double getFinalPrice() { return promotion.calcPriceWithPromotion(price.getPrice()); }
 	public void setPrice(double price) {
 		this.price.setPrice(price);
-	}
-	public int getAssessment() {
-		return assessment.getRating();
-	}
-	public void setAssessment(int assessment) {
-		this.assessment.setRating(assessment);
-	}
-	public List<Image> getImages() {
-		return images;
-	}
-	public void setImages(List<Image> images)
-	{
-		this.images = images;
-	}
-	public void addImage(Image image) {
-		this.images.add(image);
-	}
-	public List<Review> getComments() {
-		return comments;
-	}
-	public void addComment(Review comment) {
-		this.comments.add(comment);
 	}
 	public boolean isInStock()
 	{

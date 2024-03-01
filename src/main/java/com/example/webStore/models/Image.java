@@ -1,16 +1,25 @@
 package com.example.webStore.models;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import org.springframework.data.annotation.Id;
 
 public class Image {
-    private File filePath;
+    @Id
+    private long id;
+    private String filePath;
 
     public String getFilePath() {
-        return filePath.toString();
+        return filePath;
     }
 
     public void setFilePath(String filePath, String fileName) {
-        this.filePath = new File(filePath, fileName);
+        this.filePath = filePath+fileName;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

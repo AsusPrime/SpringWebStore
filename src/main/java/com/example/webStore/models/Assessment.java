@@ -1,15 +1,29 @@
 package com.example.webStore.models;
 
-public class Assessment {
-    private int rating;
+import java.util.List;
 
-    public int getRating() {
+public class Assessment {
+    private double rating;
+    private List<Integer> allRatings;
+
+    public double getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void addRating(int rating) {
         if(rating > 5 || rating < 0)
             throw new IllegalArgumentException("Rating is out of range");
-        this.rating = rating;
+        allRatings.add(rating);
+        calcRating();
+    }
+
+    private void calcRating()
+    {
+        double sum = 0;
+        for(int i : allRatings)
+        {
+            sum += i;
+        }
+        rating = sum / allRatings.size();
     }
 }

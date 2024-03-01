@@ -1,6 +1,10 @@
 package com.example.webStore.models;
 
+import org.springframework.data.annotation.Id;
+
 public class Review {
+    @Id
+    private long id;
     private Account sender;
     private Assessment assessment;
     private String comment;
@@ -27,5 +31,13 @@ public class Review {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

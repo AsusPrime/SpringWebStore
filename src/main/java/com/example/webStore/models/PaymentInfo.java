@@ -1,8 +1,12 @@
 package com.example.webStore.models;
 
+import org.springframework.data.annotation.Id;
+
 import java.util.Date;
 
 public class PaymentInfo {
+    @Id
+    private long id;
     private String cardNumber;
     private String cvv;
     private Date adjectiveTerm;
@@ -105,5 +109,13 @@ public class PaymentInfo {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }
