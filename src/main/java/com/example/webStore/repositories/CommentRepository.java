@@ -23,7 +23,7 @@ public interface CommentRepository extends CrudRepository<Review, Long> {
     public List<Review> getAllCommentsByAccountId(long id);
 
     //add
-    @Query("ISERT INTO comment (accountId, assessment, text, bookId) " +
+    @Query("INSERT INTO comment (accountId, assessment, text, bookId) " +
             "VALUES (:accountId, :assessment, :text, :bookId)")
     @Modifying
     public void addNewBook(long accountId, int assessment, String text, long bookId);
