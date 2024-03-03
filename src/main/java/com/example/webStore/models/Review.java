@@ -8,6 +8,7 @@ public class Review {
     private Account sender;
     private Assessment assessment;
     private String comment;
+    private long bookId;
 
     public Account getSender() {
         return sender;
@@ -39,5 +40,13 @@ public class Review {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public long getBookId() {
+        return bookId;
+    }
+
+    public void setBookId(long bookId) {
+        this.bookId = bookId;
     }
 }

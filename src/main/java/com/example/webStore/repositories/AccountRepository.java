@@ -15,14 +15,18 @@ public interface AccountRepository extends CrudRepository<Account, Long> {
     @Query("SELECT * FROM account WHERE id = :id")
     public Account getAccountById(long id);
 
-    @Query("INSERT INTO account (name, paymentInfoId, email, password) " +
-            "VALUES(:name, :paymentInfoId, :email, :password)")
+    @Query("INSERT INTO account (name, paymentInfoId) " +
+            "VALUES(:name, :paymentInfoId)")
     @Modifying
-    public void addNewAccount(String name, long paymentInfoId,
-                              String email, String password);
+    public void addNewAccount(String name, long paymentInfoId);
 
     //change name
     @Query("UPDATE account SET name = :name WHERE id = :id")
     @Modifying
     public void updateNameById(String name, long id);
+
+    //add paymentInfo
+    @Query("UPDATE account SET paymentInfo = :paymentInfoId WHERE id = :id")
+    @Modifying
+    public void updatePaymentInfoById(long paymentInfoId, long id);
 }

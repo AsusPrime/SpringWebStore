@@ -17,6 +17,12 @@ public interface BookRepository extends CrudRepository<Book, Long> {
     @Query("SELECT * FROM book WHERE id = :id")
     public Book getBookById(long id);
 
+    @Query("SELECT *, COUNT(promotion) AS count" +
+            "FROM book" +
+            "GROUP BY promotion" +
+            "ORDER BY count DESC;")
+    public List<Book> getAllBooksSortedByPromotion();
+
     //add book
     @Query("INSERT INTO book (name, author, price, count, promotion) " +
             "VALUES(:name, :author, :price, :count, :promotion)")
