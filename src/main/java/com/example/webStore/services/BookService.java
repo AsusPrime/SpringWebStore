@@ -64,6 +64,14 @@ public class BookService {
                 .getCount() - 1, bookId);
     }
 
+    public void reduceCountListOfBooks(List<Book> books)
+    {
+        for(var b : books)
+        {
+            increaseCountBooksByBookId(b.getId());
+        }
+    }
+
     public void increaseCountBooksByBookId(long bookId)
     {
         bookRepository.updateCountById(bookRepository.getBookById(bookId)

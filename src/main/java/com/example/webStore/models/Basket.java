@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Basket {
     private List<Book> books;
-    private Price fullPrice;
+    private Price fullPrice = new Price();
 
     public List<Book> getBooks()
     {

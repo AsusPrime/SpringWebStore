@@ -8,12 +8,12 @@ public class PaymentInfo {
     @Id
     private long id;
     private String cardNumber;
-    private String cvv;
+    private int cvv;
     private Date adjectiveTerm;
     private String name;
     private String lastName;
     private String address;
-    private String pin;
+    private int pin;
 
 
     public String getCardNumber() {
@@ -39,19 +39,20 @@ public class PaymentInfo {
         this.cardNumber = cardNumber;
     }
 
-    public String getCvv() {
+    public int getCvv() {
         return cvv;
     }
 
-    public void setCvv(String cvv) {
+    public void setCvv(int cvv) {
         // Проверка наличия 4 цифр в CVV
-        if (cvv.length() != 4) {
+        String cvv_s = String.valueOf(cvv);
+        if (cvv_s.length() != 4) {
             throw new IllegalArgumentException("CVV must have 4 digits");
         }
 
         // Проверка, что все символы CVV являются цифрами
-        for (int i = 0; i < cvv.length(); i++) {
-            if (!Character.isDigit(cvv.charAt(i))) {
+        for (int i = 0; i < cvv_s.length(); i++) {
+            if (!Character.isDigit(cvv_s.charAt(i))) {
                 throw new IllegalArgumentException("CVV must contain only numbers");
             }
         }
@@ -83,19 +84,20 @@ public class PaymentInfo {
         this.lastName = lastName;
     }
 
-    public String getPin() {
+    public int getPin() {
         return pin;
     }
 
-    public void setPin(String pin) {
+    public void setPin(int pin) {
         // Проверка наличия 4 цифр в PIN
-        if (pin.length() != 4) {
+        String pin_s = String.valueOf(pin);
+        if (pin_s.length() != 4) {
             throw new IllegalArgumentException("PIN must have 4 digits");
         }
 
         // Проверка, что все символы PIN являются цифрами
-        for (int i = 0; i < pin.length(); i++) {
-            if (!Character.isDigit(pin.charAt(i))) {
+        for (int i = 0; i < pin_s.length(); i++) {
+            if (!Character.isDigit(pin_s.charAt(i))) {
                 throw new IllegalArgumentException("CVV must contain only numbers");
             }
         }

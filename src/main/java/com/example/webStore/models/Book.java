@@ -7,10 +7,14 @@ public class Book {
 	private long id;
 	private String name;
 	private String author;
-	private Price price;
+	private Price price = new Price();
 	private int count = 0;
-	private Promotion promotion;
+	private Promotion promotion = new Promotion();
 
+	public long getId()
+	{
+		return id;
+	}
 	public String getName() {
 		return name;
 	}
@@ -69,5 +73,25 @@ public class Book {
 	public int getPromotionPercent()
 	{
 		return this.promotion.getPercent();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+
+		if (obj == null || getClass() != obj.getClass())
+			return false;
+
+		Book book = (Book) obj;
+
+		if(book.name != name)
+			return false;
+		if(book.author != author)
+			return false;
+		if(book.id != id)
+			return false;
+
+		return true;
 	}
 }

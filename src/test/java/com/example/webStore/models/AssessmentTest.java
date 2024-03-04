@@ -10,15 +10,23 @@ public class AssessmentTest {
     @Test
     public void testGetRating() {
         Assessment assessment = new Assessment();
-        assessment.setRating(3);
+        assessment.addRating(3);
         assertEquals(3, assessment.getRating());
+    }
+
+    @Test
+    public void testRating() {
+        Assessment assessment = new Assessment();
+        assessment.addRating(3);
+        assessment.addRating(5);
+        assertEquals((3+5)/2, assessment.getRating());
     }
 
     @Test
     public void testSetRating_OutOfBoundsException() {
         Assessment assessment = new Assessment();
         assertThrows(IllegalArgumentException.class, () -> {
-            assessment.setRating(6); // Пытаемся установить рейтинг больше 5
+            assessment.addRating(6); // Пытаемся установить рейтинг больше 5
         });
     }
 
@@ -26,7 +34,7 @@ public class AssessmentTest {
     public void testSetRating_NegativeValue_OutOfBoundsException() {
         Assessment assessment = new Assessment();
         assertThrows(IllegalArgumentException.class, () -> {
-            assessment.setRating(-1); // Пытаемся установить отрицательный рейтинг
+            assessment.addRating(-1); // Пытаемся установить отрицательный рейтинг
         });
     }
 }

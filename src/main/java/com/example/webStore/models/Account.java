@@ -31,4 +31,9 @@ public class Account {
     public void setId(long id) {
         this.id = id;
     }
+
+    public boolean hasAccountPaymentInfo()
+    {
+        return (paymentInfo != null);
+    }
 }

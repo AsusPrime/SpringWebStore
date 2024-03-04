@@ -39,46 +39,31 @@ public class PaymentInfoTest {
     @Test
     public void testSetCvv_ValidCvv() {
         PaymentInfo paymentInfo = new PaymentInfo();
-        paymentInfo.setCvv("1234");
-        assertEquals("1234", paymentInfo.getCvv());
+        paymentInfo.setCvv(1234);
+        assertEquals(1234, paymentInfo.getCvv());
     }
 
     @Test
     public void testSetCvv_InvalidCvv_Length() {
         PaymentInfo paymentInfo = new PaymentInfo();
         assertThrows(IllegalArgumentException.class, () -> {
-            paymentInfo.setCvv("123");
+            paymentInfo.setCvv(123);
         });
     }
 
-    @Test
-    public void testSetCvv_InvalidCvv_Format() {
-        PaymentInfo paymentInfo = new PaymentInfo();
-        assertThrows(IllegalArgumentException.class, () -> {
-            paymentInfo.setCvv("12X4");
-        });
-    }
 
     @Test
     public void testSetPin_ValidPin() {
         PaymentInfo paymentInfo = new PaymentInfo();
-        paymentInfo.setPin("1234");
-        assertEquals("1234", paymentInfo.getPin());
+        paymentInfo.setPin(1234);
+        assertEquals(1234, paymentInfo.getPin());
     }
 
     @Test
     public void testSetPin_InvalidPin_Length() {
         PaymentInfo paymentInfo = new PaymentInfo();
         assertThrows(IllegalArgumentException.class, () -> {
-            paymentInfo.setPin("123");
-        });
-    }
-
-    @Test
-    public void testSetPin_InvalidPin_Format() {
-        PaymentInfo paymentInfo = new PaymentInfo();
-        assertThrows(IllegalArgumentException.class, () -> {
-            paymentInfo.setPin("12X4");
+            paymentInfo.setPin(123);
         });
     }
 }
