@@ -1,15 +1,18 @@
 package com.example.webStore.models;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Embedded;
 
 public class Book {
 	@Id
 	private long id;
 	private String name;
 	private String author;
-	private Price price = new Price();
+
+//	@Embedded
+	private double price;
 	private int count = 0;
-	private Promotion promotion = new Promotion();
+	private int promotion;
 
 	public long getId()
 	{
@@ -28,11 +31,12 @@ public class Book {
 		this.author = author;
 	}
 	public double getPrice() {
-		return price.getPrice();
+		return price;
 	}
-    public double getFinalPrice() { return promotion.calcPriceWithPromotion(price.getPrice()); }
+    public double getFinalPrice() { return price - (price / 100 * promotion); }
 	public void setPrice(double price) {
-		this.price.setPrice(price);
+		if(price < 0) throw new IllegalArgumentException("Price cannot be null");
+		this.price = price;
 	}
 	public boolean isInStock()
 	{
@@ -60,19 +64,16 @@ public class Book {
 	}
 	public void setPromotion(int percent)
 	{
-		this.promotion.setPercent(percent);
-	}
-	public void removePromotion()
-	{
-		this.promotion.setPercent(0);
+		if(percent < 0) throw new IllegalArgumentException("Promotion cannot be negative");
+		this.promotion = percent;
 	}
 	public boolean isPromotion()
 	{
-		return this.promotion.getPercent() > 0;
+		return this.promotion > 0;
 	}
 	public int getPromotionPercent()
 	{
-		return this.promotion.getPercent();
+		return this.promotion;
 	}
 
 	@Override

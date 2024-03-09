@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Basket {
     private List<Book> books;
-    private Price fullPrice = new Price();
+    private double price;
 
     public List<Book> getBooks()
     {
@@ -25,7 +25,7 @@ public class Basket {
     public double getFullPrice()
     {
         calcFullPrice();
-        return fullPrice.getPrice();
+        return price;
     }
     private void calcFullPrice()
     {
@@ -34,6 +34,6 @@ public class Basket {
         {
             sum += book.getFinalPrice();
         }
-        fullPrice.setPrice(sum);
+        price = sum;
     }
 }

@@ -23,6 +23,8 @@ public interface BookRepository extends CrudRepository<Book, Long> {
             "ORDER BY count DESC;")
     public List<Book> getAllBooksSortedByPromotion();
 
+    List<Book> findByNameContaining(String name);
+
     //add book
     @Query("INSERT INTO book (name, author, price, count, promotion) " +
             "VALUES(:name, :author, :price, :count, :promotion)")

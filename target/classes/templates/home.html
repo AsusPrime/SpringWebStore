@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookstore</title>
+    <style>
+        header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 1rem;
+          background-color: #f0f0f0;
+        }
+
+        /* Search Bar */
+        .search-bar {
+          flex: 1; /* Takes up remaining space in the header */
+        }
+
+        .search-bar input[type="text"] {
+          width: 25%;
+          padding: 0.5rem;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+        }
+
+        .search-bar button {
+          padding: 0.5rem 1rem;
+          background-color: #333;
+          color: #fff;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+
+        /* Icons */
+        .icons {
+          display: inline-block;
+          gap: 1rem;
+        }
+        .icon {
+          width: 40px; /* Adjust the size as needed */
+          height: 40px; /* Adjust the size as needed */
+        }
+
+        .account-icons img {
+          width: 24px;
+          height: 24px;
+        }
+
+        /* Main Section */
+        main {
+          display: flex;
+        }
+
+        /* Books Section */
+        section.books {
+          flex: 1;
+          padding: 1rem;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 1rem;
+        }
+
+        article.book {
+          width: calc(33% - 1rem); /* Adjust based on desired column count */
+          background-color: #fff;
+          padding: 1rem;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          text-align: center;
+        }
+
+        article.book img {
+          width: 100%;
+          height: 200px;
+          object-fit: cover;
+        }
+
+        article.book h3 {
+          margin-top: 1rem;
+          margin-bottom: 0.5rem;
+        }
+
+        article.book p {
+          font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="search-bar">
+        <form action="/" method="GET">
+            <input type="text" id="search" name="search" placeholder="Search Books">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <div class="icons">
+        <a href="/basket"><img src="basket.jpg" alt="Basket" class="icon"></a>
+        <a href="/account"><img src="account.png" alt="Login/Account" class="icon"></a>
+    </div>
+</header>
+<main>
+    <section th:each="p: ${books}" class="books">
+        <article class="book">
+            <a th:href="@{'/books?id=' + ${p.id}}" href="#">
+                <img src="book.jpg" alt="Book Cover">
+                <h2 th:text="${p.name}"></h2>
+                <p th:text="${p.price}"></p>
+            </a>
+        </article>
+    </section>
+</main>
+</body>
+</html>

@@ -42,6 +42,11 @@ public class BookService {
         return bookRepository.getBookById(id);
     }
 
+    public List<Book> getAllBooksLikeName(String name)
+    {
+        return bookRepository.findByNameContaining(name);
+    }
+
     public void addNewBook(Book book)
     {
         bookRepository.addNewBook(book.getName(), book.getAuthor(),
