@@ -1,11 +1,17 @@
 package com.example.webStore.models;
 
 import org.springframework.data.annotation.Id;
+import javax.persistence.*;
 
+@Entity
 public class Review {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
-    private Account sender;
+
+    @ManyToOne
+    @JoinColumn(name = "accountId")
+    private Account sender = new Account();
     private Assessment assessment;
     private String comment;
     private long bookId;

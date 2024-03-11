@@ -1,10 +1,11 @@
 package com.example.webStore.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Assessment {
     private double rating;
-    private List<Integer> allRatings;
+    private List<Integer> allRatings = new ArrayList<Integer>();
 
     public double getRating() {
         return rating;

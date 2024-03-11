@@ -4,26 +4,24 @@ import com.example.webStore.models.Book;
 import com.example.webStore.models.Image;
 import com.example.webStore.models.Review;
 import com.example.webStore.repositories.BookRepository;
-import com.example.webStore.repositories.CommentRepository;
+import com.example.webStore.repositories.CommentsRepository;
 import com.example.webStore.repositories.ImageRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class BookService {
     private final BookRepository bookRepository;
-    private final CommentRepository commentRepository;
+    private final CommentsRepository commentsRepository;
     private final ImageRepository imageRepository;
 
     public BookService(BookRepository bookRepository,
-                       CommentRepository commentRepository,
+                       CommentsRepository commentsRepository,
                        ImageRepository imageRepository)
     {
         this.bookRepository = bookRepository;
-        this.commentRepository = commentRepository;
+        this.commentsRepository = commentsRepository;
         this.imageRepository = imageRepository;
     }
 
@@ -60,7 +58,7 @@ public class BookService {
 
     public List<Review> getCommentsByBookId(long bookId)
     {
-        return commentRepository.getAllCommentsByBookId(bookId);
+        return commentsRepository.getAllCommentsByBookId(bookId);
     }
 
     public void reduceCountBooksByBookId(long bookId)

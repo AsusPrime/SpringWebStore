@@ -104,7 +104,7 @@
 <main>
     <section th:each="p: ${books}" class="books">
         <article class="book">
-            <a th:href="@{'/books?id=' + ${p.id}}" href="#">
+            <a th:href="@{'/book?id=' + ${p.id}}" href="#">
                 <img src="book.jpg" alt="Book Cover">
                 <h2 th:text="${p.name}"></h2>
                 <p th:text="${p.price}"></p>
