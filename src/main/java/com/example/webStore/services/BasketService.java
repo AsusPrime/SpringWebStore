@@ -32,4 +32,15 @@ public class BasketService {
     {
         booksInBasket.clear();
     }
+
+    public double getFullPrice()
+    {
+        double sum = 0;
+        for(var b : booksInBasket)
+        {
+            sum += b.getPrice();
+        }
+
+        return sum;
+    }
 }

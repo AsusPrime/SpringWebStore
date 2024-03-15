@@ -1,6 +1,5 @@
 package com.example.webStore.repositories;
 
-import com.example.webStore.models.Assessment;
 import com.example.webStore.models.Review;
 import com.example.webStore.services.AccountService;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -29,9 +28,7 @@ public class CommentsRepository {
             comment.setId(r.getInt("id"));
             comment.setSender(accountService.getAccountById(r.getInt("accountId")));
             comment.setComment(r.getString("text"));
-            Assessment a = new Assessment();
-            a.addRating(r.getInt("assessment"));
-            comment.setAssessment(a);
+            comment.setAssessment(r.getInt("assessment"));
             comment.setBookId(r.getInt("bookId"));
             return comment;
         };
@@ -48,9 +45,7 @@ public class CommentsRepository {
             comment.setId(r.getInt("id"));
             comment.setSender(accountService.getAccountById(r.getInt("accountId")));
             comment.setComment(r.getString("text"));
-            Assessment a = new Assessment();
-            a.addRating(r.getInt("assessment"));
-            comment.setAssessment(a);
+            comment.setAssessment(r.getInt("assessment"));
             comment.setBookId(r.getInt("bookId"));
             return comment;
         };

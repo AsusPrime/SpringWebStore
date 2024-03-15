@@ -12,7 +12,7 @@ public class Review {
     @ManyToOne
     @JoinColumn(name = "accountId")
     private Account sender = new Account();
-    private Assessment assessment;
+    private int assessment;
     private String comment;
     private long bookId;
 
@@ -24,11 +24,11 @@ public class Review {
         this.sender = sender;
     }
 
-    public Assessment getAssessment() {
+    public int getAssessment() {
         return assessment;
     }
 
-    public void setAssessment(Assessment assessment) {
+    public void setAssessment(int assessment) {
         this.assessment = assessment;
     }
 

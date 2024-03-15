@@ -1,11 +1,12 @@
 package com.example.webStore.models;
 
+import lombok.EqualsAndHashCode;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Embedded;
 
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Book {
 	@Id
-	private long id;
+	@EqualsAndHashCode.Include long id;
 	private String name;
 	private String author;
 
@@ -76,23 +77,4 @@ public class Book {
 		return this.promotion;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-
-		if (obj == null || getClass() != obj.getClass())
-			return false;
-
-		Book book = (Book) obj;
-
-		if(book.name != name)
-			return false;
-		if(book.author != author)
-			return false;
-		if(book.id != id)
-			return false;
-
-		return true;
-	}
 }
