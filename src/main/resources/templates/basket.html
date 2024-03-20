@@ -70,6 +70,27 @@
         article.book p {
           font-weight: bold;
         }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+        }
     </style>
 </head>
 <body>
@@ -94,7 +115,26 @@
 
     <p>Final price: </p>
     <p th:text="${price}"></p>
+    <button onclick="openModal()">BUY</button>
 </main>
+
+<div id="myModal" class="modal">
+  <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2>Please, enter payment info</h2>
+      <form id="apiForm">
+          <input type="number" id="cardNumber" placeholder="card number" required>
+          <input type="number" id="cvv" placeholder="CVV" required>
+          <input type="date" id="adjectiveTerm" placeholder="Adjective term" required>
+          <input type="text" id="name" placeholder="Name" required>
+          <input type="text" id="lastName" placeholder="Last name" required>
+          <input type="text" id="address" placeholder="Address" required>
+          <input type="number" id="pin" placeholder="PIN" required>
+          <button type="submit">BUY BOOKS</button>
+      </form>
+      <div id="response"></div>
+  </div>
+</div>
 
 <script>
   var buyButtons = document.querySelectorAll("#delete");
@@ -121,6 +161,56 @@
         location.reload();
     }, 200);
   }
+
+  function openModal() {
+        document.getElementById('myModal').style.display = "block";
+    }
+
+    // Функция для закрытия модального окна
+    function closeModal() {
+        document.getElementById('myModal').style.display = "none";
+    }
+
+    document.getElementById('apiForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Предотвращаем отправку формы по умолчанию
+
+        // Получаем значения полей формы
+        var cardNumber= document.getElementById('cardNumber').value;
+        var cvv= document.getElementById('cvv').value;
+        var adjectiveTerm= document.getElementById('adjectiveTerm').value;
+        var firstName = document.getElementById('name').value;
+        var lastName = document.getElementById('lastName').value;
+        var address = document.getElementById('address').value;
+        var pin= document.getElementById('pin').value;
+
+        // Создаем объект с данными для отправки
+        var data = {
+            cardNumber : cardNumber,
+            cvv: cvv,
+            adjectiveTerm: adjectiveTerm,
+            name: firstName,
+            lastName: lastName,
+            address: address,
+            pin: pin
+        };
+
+        // Отправляем POST запрос по API
+        fetch('/payment', {
+            method: 'POST',
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => {
+            if (response.ok) { // Проверяем успешность запроса (статус 200-299)
+              closeModal();
+              window.location.reload();
+            } else {
+              document.getElementById('response').innerText = error.message;
+            }
+        });
+    });
 </script>
 </body>
 </html>

@@ -71,14 +71,9 @@ public class BookService {
     {
         for(var b : books)
         {
-            increaseCountBooksByBookId(b.getId());
+            bookRepository.updateCountById(bookRepository.getBookById(b.getId())
+                    .getCount() - 1, b.getId());
         }
-    }
-
-    public void increaseCountBooksByBookId(long bookId)
-    {
-        bookRepository.updateCountById(bookRepository.getBookById(bookId)
-                .getCount() + 1, bookId);
     }
 
 /*    public List<Book> getAllBooksSortedByCommentsCount()

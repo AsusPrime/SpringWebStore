@@ -1,12 +1,14 @@
 package com.example.webStore.models;
 
+import lombok.Builder;
 import org.springframework.data.annotation.Id;
 
 import java.util.Date;
 
+@Builder
 public class PaymentInfo {
     @Id
-    private long id;
+    private int id;
     private String cardNumber;
     private int cvv;
     private Date adjectiveTerm;
@@ -113,11 +115,11 @@ public class PaymentInfo {
         this.address = address;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 }

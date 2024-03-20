@@ -8,20 +8,20 @@ import java.util.List;
 
 public interface OrderRepository extends CrudRepository<Order, Long> {
 
-    @Query("SELECT * FROM order")
+    @Query("SELECT * FROM `order`")
     public List<Order> getAllOrders();
 
-    @Query("SELECT * FROM order WHERE accountId = :accountId")
+    @Query("SELECT * FROM `order` WHERE accountId = :accountId")
     public List<Order> getAllOrdersByAccountId(long accountId);
 
-    @Query("SELECT * FROM order WHERE id = :id")
+    @Query("SELECT * FROM `order` WHERE id = :id")
     public Order getOrderById(long id);
 
-    @Query("INSERT INTO order (accountId, address) VALUES(:accountId, :address)")
+    @Query("INSERT INTO `order` (accountId, address) VALUES(:accountId, :address)")
     @Modifying
     public void addNewOrder(long accountId, String address);
 
-    @Query("UPDATE order SET address = :address")
+    @Query("UPDATE `order` SET address = :address")
     @Modifying
     public void changeOrderAddress(String address);
 }
