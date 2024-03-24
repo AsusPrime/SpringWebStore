@@ -3,6 +3,8 @@ package com.example.webStore.controllers;
 import com.example.webStore.models.Book;
 import com.example.webStore.models.Review;
 import com.example.webStore.services.BookService;
+import com.example.webStore.services.LoginService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
@@ -16,14 +18,11 @@ import java.nio.file.Files;
 import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 public class BookPageController {
 
     private final BookService bookService;
-
-    public BookPageController(BookService bookService)
-    {
-        this.bookService = bookService;
-    }
+    private final LoginService loginService;
 
     @GetMapping("/book")
     public String bookPage(Model model,
@@ -34,6 +33,18 @@ public class BookPageController {
         model.addAttribute("book", book);
         model.addAttribute("comments", comments);
         return "book";
+    }
+
+    @PostMapping("/book")
+    public String sendComment(Model model,
+            @RequestParam(name = "id", required = true) int id,
+            @RequestParam(name = "comment") String comment,
+            @RequestParam(name = "assessment") int assessment)
+    {
+        if(loginService.getAccount() == null){return bookPage(model, id);}
+        bookService.addNewComment(id, comment, assessment,
+                (int)loginService.getAccount().getId());
+        return bookPage(model, id);
     }
 
     @GetMapping("/book/book.jpg")

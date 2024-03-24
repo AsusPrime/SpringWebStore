@@ -23,9 +23,6 @@
         #description {
             border: 2px solid black;
         }
-        #write_comment {
-            display: flex;
-        }
         .comment {
             border: 1px solid black;
             margin-bottom: 10px;
@@ -65,9 +62,10 @@
     </div>
     <div id="comments">
         <div id="write_comment">
-            <form method="post">
-                <textarea id="comment" name="comment" rows="4" cols="50" required disabled placeholder="Введите ваш комментарий здесь"></textarea>
-                <input type="submit" value="Отправить комментарий">
+            <form method="POST">
+                <textarea id="comment" name="comment" rows="4" cols="50" required placeholder="Your message"></textarea>
+                <input type="number" name="assessment" id="assessment" max="5" min="0" value="0">
+                <input type="submit" value="Send">
             </form>
         </div>
         <br>

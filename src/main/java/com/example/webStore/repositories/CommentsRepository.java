@@ -52,4 +52,13 @@ public class CommentsRepository {
 
         return jdbc.query(sql, reviewRowMapper, id);
     }
+
+    public void addNewComment(int bookId, String comment, int assessment,
+                              int senderId)
+    {
+        String sql = "INSERT INTO comment (accountId, assessment, text, bookId) " +
+                "VALUES(?, ?, ?, ?)";
+
+        jdbc.update(sql, senderId, assessment, comment, bookId);
+    }
 }

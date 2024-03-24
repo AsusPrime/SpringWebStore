@@ -61,6 +61,12 @@ public class BookService {
         return commentsRepository.getAllCommentsByBookId(bookId);
     }
 
+    public void addNewComment(int bookId, String comment, int assessment,
+                              int senderId)
+    {
+        commentsRepository.addNewComment(bookId, comment, assessment, senderId);
+    }
+
     public void reduceCountBooksByBookId(long bookId)
     {
         bookRepository.updateCountById(bookRepository.getBookById(bookId)
