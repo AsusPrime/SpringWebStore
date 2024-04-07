@@ -46,4 +46,9 @@ public class AccountService {
         if(!logData.getPassword().equals(password)) {return null;}
         return accountRepository.getAccountById(logData.getAccountId());
     }
+
+    public void ChangeLoginData(String email, String password, int id)
+    {
+        accountLoginRepository.changeAccountLoginData(email, password, id);
+    }
 }

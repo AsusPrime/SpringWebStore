@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account</title>
+    <style>
+        header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 1rem;
+          background-color: #f0f0f0;
+        }
+
+        /* Search Bar */
+        .search-bar {
+          flex: 1; /* Takes up remaining space in the header */
+        }
+
+        .search-bar input[type="text"] {
+          width: 25%;
+          padding: 0.5rem;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+        }
+
+        .search-bar button {
+          padding: 0.5rem 1rem;
+          background-color: #333;
+          color: #fff;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+
+        /* Icons */
+        .icons {
+          display: inline-block;
+          gap: 1rem;
+        }
+        .icon {
+          width: 40px; /* Adjust the size as needed */
+          height: 40px; /* Adjust the size as needed */
+        }
+
+        .account-icons img {
+          width: 24px;
+          height: 24px;
+        }
+
+        .acc_icon {
+            width: 150px;
+            height: 150px;
+        }
+
+        main{
+          display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="search-bar">
+            <a href="/"><img src="book.jpg" alt="Home" class="icon"></a>
+        </div>
+        <div class="icons">
+            <a href="/basket"><img src="basket.jpg" alt="Basket" class="icon"></a>
+            <a href="/account"><img src="account.png" alt="Login/Account" class="icon"></a>
+        </div>
+    </header>
+    <main>
+      <h2>Change Login and Password</h2>
+      <form action="/change_data" method="post">
+        <table>
+            <tr>
+                <td><label for="login">Username:</label></td>
+                <td><input type="text" id="login" name="login"></td>
+            </tr>
+            <tr>
+                <td><label for="password">Password:</label></td>
+                <td><input type="password" id="password" name="password"></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Submit"></td>
+            </tr>
+        </table>
+    </form>
+    </main>
+</body>
+</html>

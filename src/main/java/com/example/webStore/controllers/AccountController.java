@@ -27,6 +27,9 @@ public class AccountController {
         if(loginService.getAccount() == null)
         {
             return "redirect:/login";
+        }else if(loginService.getAccount().getId() == 2)
+        {
+            return "redirect:/admin_panel";
         }
         model.addAttribute("name",
                 loginService.getAccount().getName());

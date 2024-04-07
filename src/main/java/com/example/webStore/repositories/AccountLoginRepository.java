@@ -29,4 +29,25 @@ public class AccountLoginRepository {
 
         return jdbc.queryForObject(sql, accRowMapper, email);
     }
+
+    public void changeAccountLoginData(String email, String password, int id)
+    {
+        String sql;
+        if(email == null && password == null) { return; }
+        else if(password == null) {
+            sql = "UPDATE account_login_data SET email = ? WHERE accountId = ?";
+            jdbc.update(sql, email, id);
+            return;
+        }
+        else if(email == null) {
+            sql = "UPDATE account_login_data SET password = ? WHERE accountId = ?";
+            jdbc.update(sql, password, id);
+            return;
+        }
+        else {
+            sql = "UPDATE account_login_data SET email = ?, password = ? WHERE accountId = ?";
+            jdbc.update(sql, email, password, id);
+            return;
+        }
+    }
 }
