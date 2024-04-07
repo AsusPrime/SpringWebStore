@@ -53,6 +53,11 @@
             width: 150px;
             height: 150px;
         }
+        .comment {
+            border: 1px solid black;
+            margin-bottom: 10px;
+            padding: 10px;
+        }
     </style>
 </head>
 <body>
@@ -68,6 +73,14 @@
     <main>
         <img src="account.png" alt="Account" class="acc_icon">
         <h2 th:text="${name}"></h2>
+
+        <h2>Best Comments</h2>
+        <div th:each="comment : ${comments}" class="comment">
+          <div id="text">
+              <p th:text="${comment.assessment}"></p>
+              <p th:text="${comment.comment}">Comment</p>
+          </div>
+      </div>
     </main>
 </body>
 </html>

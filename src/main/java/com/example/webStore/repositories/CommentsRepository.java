@@ -53,6 +53,23 @@ public class CommentsRepository {
         return jdbc.query(sql, reviewRowMapper, id);
     }
 
+    public List<Review> getAllCommentsByAccountId(long id)
+    {
+        String sql = "SELECT * FROM comment WHERE accountId = ? ORDER BY assessment LIMIT 3;";
+
+        RowMapper<Review> reviewRowMapper = (r, i) -> {
+            Review comment = new Review();
+            comment.setId(r.getInt("id"));
+            comment.setSender(accountService.getAccountById(r.getInt("accountId")));
+            comment.setComment(r.getString("text"));
+            comment.setAssessment(r.getInt("assessment"));
+            comment.setBookId(r.getInt("bookId"));
+            return comment;
+        };
+
+        return jdbc.query(sql, reviewRowMapper, id);
+    }
+
     public void addNewComment(int bookId, String comment, int assessment,
                               int senderId)
     {

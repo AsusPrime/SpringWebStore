@@ -1,5 +1,6 @@
 package com.example.webStore.controllers;
 
+import com.example.webStore.repositories.CommentsRepository;
 import com.example.webStore.services.LoginService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.ClassPathResource;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.xml.stream.events.Comment;
 import java.io.IOException;
 import java.nio.file.Files;
 
@@ -20,6 +22,7 @@ import java.nio.file.Files;
 public class AccountController {
 
     private final LoginService loginService;
+    private final CommentsRepository commentsRepository;
 
     @GetMapping
     public String getAccountPage(Model model)
@@ -33,6 +36,9 @@ public class AccountController {
         }
         model.addAttribute("name",
                 loginService.getAccount().getName());
+        model.addAttribute("comments",
+                commentsRepository.getAllCommentsByAccountId(
+                        loginService.getAccount().getId()));
         return "account.html";
     }
 
