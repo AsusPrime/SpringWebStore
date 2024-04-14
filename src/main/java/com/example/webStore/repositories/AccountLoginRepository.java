@@ -1,5 +1,6 @@
 package com.example.webStore.repositories;
 
+import com.example.webStore.models.Account;
 import com.example.webStore.models.AccountLoginData;
 import com.example.webStore.models.Review;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +29,21 @@ public class AccountLoginRepository {
         };
 
         return jdbc.queryForObject(sql, accRowMapper, email);
+    }
+
+    public Account getAccountById(int id)
+    {
+        String sql = "SELECT * FROM account WHERE id = ?";
+
+        RowMapper<Account> accRowMapper = (r, i) -> {
+            Account account = new Account();
+            account.setId(r.getInt("id"));
+            account.setIsAuthor(r.getInt("isAuthor"));
+            account.setName(r.getString("name"));
+            return account;
+        };
+
+        return jdbc.queryForObject(sql, accRowMapper, id);
     }
 
     public void changeAccountLoginData(String email, String password, int id)

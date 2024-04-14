@@ -12,7 +12,9 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
+    private int isAuthor;
     private PaymentInfo paymentInfo = null;
+    private boolean isAuthorB;
 
     public String getName() {
         return name;
@@ -41,5 +43,18 @@ public class Account {
     public boolean hasAccountPaymentInfo()
     {
         return (paymentInfo != null);
+    }
+
+    public boolean isAuthor() {
+        System.out.println(isAuthor);
+        if(isAuthor == 0)
+            isAuthorB = false;
+        else
+            isAuthorB = true;
+        return isAuthorB;
+    }
+
+    public void setIsAuthor(int isAuthor) {
+        this.isAuthor = isAuthor;
     }
 }
